@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PostController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -18,15 +19,14 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::middleware(['middleware' => 'api'])->group(function () {
-    # 投稿作成
-    Route::post('/posts/create', 'PostController@create');
-    # 投稿一覧表示
-    Route::get('/posts', 'PostController@index');
-    # 投稿表示
-    Route::get('/posts/{id}', 'PostController@show');
-    # 投稿編集
-    Route::patch('/posts/update/{id}' , 'PostController@update');
-    # 投稿削除
-    Route::delete('/posts/{id}', 'PostController@delete');
-});
+
+// Route::middleware(['middleware' => 'api'])->group(function () {
+//     Route::post('/posts/create', [PostController::class, 'create']);
+//     Route::get('/posts', [PostController::class, 'index']);
+//     Route::get('/posts/{id}', [PostController::class, 'show']);
+//     Route::patch('/posts/update/{id}', [PostController::class, 'update']);
+//     Route::delete('/posts/{id}', [PostController::class, 'delete']);
+// });
+
+Route::apiResource('/posts', PostController::class);
+
