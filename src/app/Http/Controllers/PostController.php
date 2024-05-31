@@ -7,8 +7,8 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
-
-    public function create(Request $request)
+// createじゃ何故かうごかなかった。
+    public function store(Request $request)
     {
         $post = new Post();
         $post->title = $request->input('title');
@@ -36,12 +36,12 @@ class PostController extends Controller
         $post = Post::find($id);
         $post->title = $request->input('title');
         $post->content = $request->input('content');
-        $post->update_at = now();
+        $post->updated_at = now();
         $post->save();
         return response()->json($post);
     }
 
-    public function delete(Int $id)
+    public function destroy(Int $id)
     {
         $post = Post::find($id)->delete();
         return response()->json(Post::all());
