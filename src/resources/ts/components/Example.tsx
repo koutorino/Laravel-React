@@ -1,10 +1,19 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom/client';
 
 function Example() {
+
+    const [state, setState] = useState()
+
+    useEffect(() => {
+        axios.get('/api/posts').then((res) => {
+            console.log(res)
+        })
+    }, [])
     return (
         <>
-        <h1>あぷりけーしょん！</h1>
+        <h1 className='text-9xl'>あぷりけーしょん！11111</h1>
         </>
     );
 }
