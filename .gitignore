@@ -1,0 +1,2 @@
+docker/minio/data/.minio.sys/*
+*.meta
