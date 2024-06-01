@@ -1,3 +1,0 @@
-docker/minio/data/.minio.sys/*
-*
-!.gitignore

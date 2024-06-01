@@ -20,5 +20,8 @@
 <body>
     <div id="app">
     </div>
+
+    {{ Storage::disk('s3')->put('test.txt', 'test') }}
+    {{ Storage::disk('s3')->get('test.txt'); }}
 </body>
 </html>
