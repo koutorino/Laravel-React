@@ -4,16 +4,9 @@ import ReactDOM from 'react-dom/client';
 
 function Example() {
 
-    const [state, setState] = useState()
-
-    useEffect(() => {
-        axios.get('/api/posts').then((res) => {
-            console.log(res)
-        })
-    }, [])
     return (
         <>
-        <h1 className='text-9xl'>あぷりけーしょん！11111</h1>
+
         </>
     );
 }
