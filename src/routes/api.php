@@ -20,9 +20,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::namespace('App\Http\Controllers')->group(function () {
     Route::group(['middleware' => ['api']], function () {
-        Route::get('/directories', 'FindDirectoryController')->name('api.directories');
-        Route::get('/files', 'FindFileController')->name('api.files');
-        Route::get('/files/hello.json', 'DownloadFileController')->name('api.files.download');
-        Route::post('/files/upload', 'UploadFileController')->name('api.files.upload');
+        // Route::get('/directories', 'FindDirectoryController')->name('api.directories');
+        // Route::get('/files', 'FindFileController')->name('api.files');
+        // Route::get('/files/hello.json', 'DownloadFileController')->name('api.files.download');
+        // Route::post('/files/upload', 'UploadFileController')->name('api.files.upload');
     });
 });
