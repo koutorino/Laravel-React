@@ -15,14 +15,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+  return $request->user();
 });
 
 Route::namespace('App\Http\Controllers')->group(function () {
-    Route::group(['middleware' => ['api']], function () {
-        // Route::get('/directories', 'FindDirectoryController')->name('api.directories');
-        // Route::get('/files', 'FindFileController')->name('api.files');
-        // Route::get('/files/hello.json', 'DownloadFileController')->name('api.files.download');
-        // Route::post('/files/upload', 'UploadFileController')->name('api.files.upload');
-    });
+  Route::group(['middleware' => ['api']], function () {
+    Route::post('/', 'PostController@store')->name('api.store');
+    Route::get('/show', 'PostController@show')->name('api.show');
+    Route::put('/update', 'PostController@update')->name('api.update');
+    Route::post('/destroy', 'PostController@destroy')->name('api.destroy');
+    Route::get('/like', 'LikesController@show')->name('api.like.show');
+    Route::post('/like', 'LikesController@store')->name('api.like.store');
+    Route::post('/like/destroy', 'LikesController@destroy')->name('api.like.destroy');
+  });
 });

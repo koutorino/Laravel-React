@@ -8,16 +8,19 @@ use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
+
+  public function index()
+  {
+    $posts = Post::all();
+    return response()->json($posts);
+  }
+
   // createじゃ何故かうごかなかった。
   public function store(Request $request)
   {
     //タイトルとコメントの処理
-    $post = new Post();
     $title = $request->input('title');
     $content = $request->input('content');
-    // $post->created_at = now();
-    // $post->updated_at = now();
-    // return response()->json(Post::all());
 
     //画像の処理
     $file = $request->file('file');
@@ -25,21 +28,17 @@ class PostController extends Controller
     $path = Storage::disk('minio')->url($path);
     $pathArray = explode('/', $path);
     $pathArray[2] = 'localhost:9000';
-    $newPathArray = implode('/', $pathArray);
+    $newPath = implode('/', $pathArray);
 
     Post::insert([
+      'user_id' => 1,
       'title' => $title,
       'content' => $content,
-      'image' => $newPathArray,
+      'image' => $newPath,
     ]);
 
+    return response()->json(Post::all());
     return redirect('/');
-  }
-
-  public function index()
-  {
-    $posts = Post::all();
-    return response()->json($posts);
   }
 
   public function show($id)
@@ -50,17 +49,26 @@ class PostController extends Controller
 
   public function update(Int $id, Request $request)
   {
+    //タイトルとコメントの処理
     $post = Post::find($id);
     $post->title = $request->input('title');
     $post->content = $request->input('content');
-    $post->updated_at = now();
+
+    //画像の処理
+    $file = $request->file('file');
+    $path = Storage::disk('s3')->putFile('/', $file, 'public');
+    $path = Storage::disk('minio')->url($path);
+    $pathArray = explode('/', $path);
+    $pathArray[2] = 'localhost:9000';
+    $newPath = implode('/', $pathArray);
     $post->save();
     return response()->json($post);
   }
 
   public function destroy(Int $id)
   {
-    $post = Post::find($id)->delete();
+    Post::find($id)->delete();
     return response()->json(Post::all());
   }
+
 }
