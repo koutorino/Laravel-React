@@ -1,25 +1,21 @@
 import { useEffect, useState } from "react";
 
-
 type Args = {
-  file : File | null;
-}
+  file: File | null;
+};
 
-export const useGetImageUrl = ({file}: Args) => {
-  const [ imageUrl, setImageUrl] = useState('')
+export const useGetImageUrl = ({ file }: Args) => {
+  const [imageUrl, setImageUrl] = useState("");
 
   useEffect(() => {
-
-    if(!file) {
-      return ;
+    if (!file) {
+      return;
     }
-
 
     let reader: FileReader | null = new FileReader();
     reader.onloadend = () => {
-			// base64のimageUrlを生成する。
       const base64 = reader && reader.result;
-      if (base64 && typeof base64 === 'string') {
+      if (base64 && typeof base64 === "string") {
         setImageUrl(base64);
       }
     };
@@ -28,13 +24,9 @@ export const useGetImageUrl = ({file}: Args) => {
     return () => {
       reader = null;
     };
-
-
-
-  }, [file])
+  }, [file]);
 
   return {
     imageUrl,
-  }
-
-}
+  };
+};

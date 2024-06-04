@@ -1,7 +1,8 @@
+import { FormEventHandler } from "react";
 
 type Props = {
   className? : string;
-  children: string
+  children: string;
 }
 
 const Button = (props : Props) => {
