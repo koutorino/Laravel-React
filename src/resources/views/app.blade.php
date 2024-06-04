@@ -15,10 +15,10 @@
 
     <!-- Scripts -->
     @viteReactRefresh
-    @vite(['resources/scss/app.scss', 'resources/ts/app.ts'])
+    @vite(['resources/css/app.css', 'resources/ts/app.ts'])
 </head>
 <body>
-    <div id="app">
+    <div id="app" class='bg-gray-200'>
     </div>
     <form action="{{ route('api.files.upload') }}" method="post" enctype="multipart/form-data">
         {{ csrf_field() }}
