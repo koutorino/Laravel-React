@@ -5,7 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class like extends Model
+class Like extends Model
 {
-    use HasFactory;
+  use HasFactory;
+
+  protected $fillable = [
+    'user_id',
+    'post_id',
+  ];
+
+  public function posts()
+  {
+    return $this->belongsTo(Post::class);
+  }
 }

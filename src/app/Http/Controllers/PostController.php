@@ -23,28 +23,28 @@ class PostController extends Controller
     $content = $request->input('content');
 
     //画像の処理
-    $file = $request->file('file');
+    $file = $request->file('image');
     $path = Storage::disk('s3')->putFile('/', $file, 'public');
     $path = Storage::disk('minio')->url($path);
     $pathArray = explode('/', $path);
     $pathArray[2] = 'localhost:9000';
     $newPath = implode('/', $pathArray);
 
-    Post::insert([
+    $post = Post::insert([
       'user_id' => 1,
       'title' => $title,
       'content' => $content,
       'image' => $newPath,
+      'created_at' => now(),
+      'updated_at' => now()
     ]);
-
-    return response()->json(Post::all());
-    return redirect('/');
+    return response()->json($post);
   }
 
   public function show($id)
   {
     $post = Post::where('id', 6)->first();
-    return view('show',compact('post'));
+    return view('show', compact('post'));
   }
 
   public function update(Int $id, Request $request)
@@ -70,5 +70,4 @@ class PostController extends Controller
     Post::find($id)->delete();
     return response()->json(Post::all());
   }
-
 }

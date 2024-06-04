@@ -7,10 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
-    use HasFactory;
+  use HasFactory;
 
-    protected $fillable = [
-        'title',
-        'content',
-    ];
+  public function likes()
+  {
+    return $this->hasMany(Like::class, 'post_id');
+  }
 }
