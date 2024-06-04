@@ -18,7 +18,7 @@
     @vite(['resources/css/app.css', 'resources/ts/app.ts'])
 </head>
 <body>
-    <div id="app">
+    <div id="app" class='bg-gray-200'>
     </div>
 </body>
 </html>
