@@ -20,8 +20,10 @@
 <body>
     <div id="app">
     </div>
-
-    {{ Storage::disk('s3')->put('test.txt', 'test') }}
-    {{ Storage::disk('s3')->get('test.txt'); }}
+    <form action="{{ route('api.files.upload') }}" method="post" enctype="multipart/form-data">
+        {{ csrf_field() }}
+        <input type="file" name="file">
+        <button type="submit">保存</button>
+      </form>
 </body>
 </html>
