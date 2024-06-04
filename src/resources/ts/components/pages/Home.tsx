@@ -1,7 +1,4 @@
-import Input from "../molecules/Input";
-import Textarea from "../molecules/Textarea";
-import Button from "../atoms/Button";
-import ContentPost from "../organisms/ContentPost";
+import PictureFom from "../organisms/PictureForm";
 
 const Home = () => {
   return (
@@ -11,7 +8,7 @@ const Home = () => {
       </header>
       <div className="flex p-4">
         <section className="h-screen bg-white w-1/4 p-4 rounded-lg">
-          <ContentPost />
+          <PictureFom />
         </section>
         <main className="ml-4 bg-white w-3/4 p-4 rounded-lg">main</main>
       </div>

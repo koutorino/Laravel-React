@@ -20,10 +20,5 @@
 <body>
     <div id="app" class='bg-gray-200'>
     </div>
-    <form action="{{ route('api.files.upload') }}" method="post" enctype="multipart/form-data">
-        {{ csrf_field() }}
-        <input type="file" name="file">
-        <button type="submit">保存</button>
-      </form>
 </body>
 </html>
