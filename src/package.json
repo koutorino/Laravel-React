@@ -23,6 +23,7 @@
         "vite": "^4.0.0"
     },
     "dependencies": {
-        "recoil": "^0.7.7"
+        "recoil": "^0.7.7",
+        "swr": "^2.2.5"
     }
 }
